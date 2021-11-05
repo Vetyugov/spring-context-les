@@ -21,7 +21,7 @@ public class MainApp {
             }
             System.out.println("===================");
             System.out.println("Введите команду");
-            System.out.println("1 - Создать новю корзину");
+            System.out.println("1 - Создать новую корзину");
             System.out.println("2 - Добавить товар в козину");
             System.out.println("3 - Удалить товар из корзины");
             System.out.println("4 - Создать заказ");
