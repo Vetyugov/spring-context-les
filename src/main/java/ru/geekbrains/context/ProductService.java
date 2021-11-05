@@ -1,7 +1,6 @@
 package ru.geekbrains.context;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,6 +13,6 @@ public class ProductService {
     }
 
     public String getTitleById(Long id) {
-        return productRepository.findById(id).getTitle();
+        return productRepository.findProductById(id).getTitle();
     }
 }

@@ -5,22 +5,24 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @Component
 public class OrderService {
-    private ProductService productService;
     private FileOutputStream fileOut;
 
-    public OrderService(ProductService productService, FileOutputStream fileOut) {
-        this.productService = productService;
+    @Autowired
+    public void setFileOut(FileOutputStream fileOut) {
         this.fileOut = fileOut;
     }
 
-    public void createOrderFromProduct(Long productId) {
+    public void createOrderFromCart(Cart cart) {
         System.out.println("Заказ создан:");
-        System.out.println(productService.getTitleById(productId));
         try {
-            fileOut.write("READY".getBytes());
+            fileOut.write("NEW ORDER\n".getBytes());
+            StringBuilder stringBuilder = new StringBuilder();
+            cart.getProductsInCart().forEach(product -> stringBuilder.append(product.toString()).append("\n"));
+            fileOut.write(stringBuilder.toString().getBytes(StandardCharsets.UTF_8));
             fileOut.flush();
         } catch (IOException e) {
             e.printStackTrace();
